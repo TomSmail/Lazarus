@@ -19,10 +19,14 @@ var station = L.icon({
     popupAnchor:  [-3, -50] 
 });
 
-// Set tiles with google maps
-L.tileLayer('http://mts1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+
+// Set tiles with JAWG
+L.tileLayer('https://{s}.tile.jawg.io/jawg-light/{z}/{x}/{y}{r}.png?access-token={accessToken}', {
+    attribution: '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 19,
     minZoom: 5,
+    subdomains: 'abcd',
+    accessToken: 'PJ7QkPxNaAADH2vKKJQO4J9zYicPbQjWt7PkGSQs9WWxMr4ea3y7uRmxoJoDsXKV',
 }).addTo(map);
 
 function drawLightning(lat, long, id, timestamp, websocket) {
