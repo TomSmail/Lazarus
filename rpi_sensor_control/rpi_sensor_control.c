@@ -143,6 +143,7 @@ void* rpi_poll(void* args) {
                         i, sound_time, light_cell_activation_time[i], time_delay);
                     report_sound_to_server(
                         i, time_delay);
+		    light_cell_activation_time[i] = 0;
                 }
             }
         }
