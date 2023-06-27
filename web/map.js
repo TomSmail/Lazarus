@@ -1,5 +1,5 @@
 // Initialise Map
-var map = L.map('map').setView([49.553, -72.342316], 7);
+var map = L.map('map').setView([51.49843, -0.17693], 14);
 
 var lightningStrikes = new Map();
 

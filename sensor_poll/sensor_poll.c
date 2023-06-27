@@ -8,8 +8,8 @@
 
 #define MAX_DELTA_BETWEEN_STATIONS 20  // in seconds
 
-double lat_array[] = {47.50000, 47.50000, 48.00000};
-double lon_array[] = {-75.60000, -75.00000, -75.00000};
+double lat_array[] = {51.51741, 51.49016, 51.48834};
+double lon_array[] = {-0.17487, -0.20087, -0.14814};
 double time_deltas[] = {0, 0, 0};
 int times_occur[] = {0, 0, 0};
 
