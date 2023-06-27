@@ -11,8 +11,8 @@ const int MAX_LINE_SIZE = 1000;
 // Convert from the concise archiveable backend format of CSV for strike
 // data to JSON that can be passed to the frontend  
 void convert_strikes_csv_to_json(void) {
-    FILE *strikes_csv = fopen("extension/strike/strikes.csv", "r");
-    FILE *strikes_json = fopen("extension/api_messages/prev_strikes.json", "w");
+    FILE *strikes_csv = fopen("strike/strikes.csv", "r");
+    FILE *strikes_json = fopen("api_messages/prev_strikes.json", "w");
     char *strike_data_str = malloc(MAX_LINE_SIZE);
 
     fgets(strike_data_str, MAX_LINE_SIZE, strikes_csv);  // skips titles
@@ -90,7 +90,7 @@ void write_strike_data_to_file(FILE *file_name, StrikeData *strike_data) {
 // Set up the single strike json file for data output from write_strike_data_to_file  
 void set_single_strike(StrikeData *strike_data) {
     FILE *single_strike_file =
-        fopen("extension/api_messages/single_strike.json", "w");
+        fopen("api_messages/single_strike.json", "w");
 
     fputs("{", single_strike_file);
     fputs("\n", single_strike_file);

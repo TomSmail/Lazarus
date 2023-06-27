@@ -1,4 +1,4 @@
-include ../../cc.mk
+include ../cc.mk
 
 .PHONY: clean
 

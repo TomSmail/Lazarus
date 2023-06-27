@@ -15,9 +15,9 @@ static unsigned int max_id = 0;
 // Backend processing to move a strike to the archive when it has been checked
 // by the fire brigade.
 void checkoff_strike(const char* strike_id) {
-    FILE* strikes_file = fopen("extension/strike/strikes.csv", "r");
-    FILE* new_strikes_file = fopen("extension/strike/strikes_temp.csv", "w");
-    FILE* archive_file = fopen("extension/strike/archive.csv", "a");
+    FILE* strikes_file = fopen("strike/strikes.csv", "r");
+    FILE* new_strikes_file = fopen("strike/strikes_temp.csv", "w");
+    FILE* archive_file = fopen("strike/archive.csv", "a");
 
     char line[MAX_LINE_LENGTH];
 
@@ -34,7 +34,7 @@ void checkoff_strike(const char* strike_id) {
     fclose(strikes_file);
     fclose(new_strikes_file);
 
-    rename("strikes_temp.csv", "extension/strike/strikes.csv");
+    rename("strikes_temp.csv", "strike/strikes.csv");
 
     // update json to csv
     convert_strikes_csv_to_json();
@@ -42,7 +42,7 @@ void checkoff_strike(const char* strike_id) {
 
 // Updates CSV file to add strike data
 void add_strike_to_csv(StrikeData* strike_data) {
-    FILE* strikes_file = fopen("extension/strike/strikes.csv", "a");
+    FILE* strikes_file = fopen("strike/strikes.csv", "a");
 
     fprintf(strikes_file, "%d,", strike_data->strike_id);
     fprintf(strikes_file, "%lld,", strike_data->timestamp);

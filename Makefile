@@ -5,13 +5,7 @@ SUBDIRS := calculate message messenger rpi_sensor_control sensor_poll socket str
 .PHONY: $(SUBDIRS) clean
 .SUFFIXES: .c .o
 
-server.o: server.c $(SUBDIRS)
--include server.d
-
-$(SUBDIRS):
-	(cd $@; make)
-
-server:
+server: server.o
 	$(CC) $(CFLAGS) -pthread \
 			-v\
 			utils/utils.o \
@@ -28,6 +22,12 @@ server:
 			-L$(HOME)/wsServer/ -l ws\
 			-l wiringPi\
 			-o server
+
+server.o: server.c $(SUBDIRS)
+-include server.d
+
+$(SUBDIRS):
+	(cd $@; make)
 
 clean:
 	for dir in $(SUBDIRS); do \

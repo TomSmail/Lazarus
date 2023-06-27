@@ -13,7 +13,7 @@ sudo apt-get install libpthread-stubs0-dev
 4. Setup ip address
 5. `source` the set_environment_variables.sh script
 7. Start the Python server in the web/static directory
-8. make and then run extension.elf
+8. make and then run ./server
 
 
 Raspberry Pi:
