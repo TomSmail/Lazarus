@@ -1,0 +1,15 @@
+# Our files
+todo.txt
+api_messages/*
+
+# Temp files
+*~
+
+# GCC output
+*.o
+*.d
+*.out
+*.elf
+
+# Mac Garbage
+*.DS_store

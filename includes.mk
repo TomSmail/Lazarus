@@ -1,0 +1,11 @@
+CFLAGS += -I$(HOME)/wsServer/include\
+		  -I$(SRC_ROOT)/calculate\
+		  -I$(SRC_ROOT)/message/get_message\
+		  -I$(SRC_ROOT)/message/set_message\
+		  -I$(SRC_ROOT)/sensor_poll\
+		  -I$(SRC_ROOT)/socket\
+		  -I$(SRC_ROOT)/strike\
+		  -I$(SRC_ROOT)/types\
+		  -I$(SRC_ROOT)/messenger\
+		  -I$(SRC_ROOT)/rpi_sensor_control\
+		  -I$(SRC_ROOT)/utils
