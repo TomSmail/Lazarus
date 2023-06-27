@@ -7,6 +7,8 @@
 #include <time.h>
 #include <wiringPi.h>
 
+// For south kensington demo: expect 6 second light sound delay.
+
 // ASSUMPTION 1: no consecutive lightning strikes (within
 // MAX_SOUND_DELAY_AFTER_LIGHT). otherwise, would use a stack of sound and light
 // times, and would massively increase complexity of trilateration process.
@@ -134,12 +136,12 @@ void* rpi_poll(void* args) {
 
                 if (sound_received(&sound_time, sound_pin)) {
                     // report to server.
+		    double time_delay = ( (double) sound_time ) - ( (double) light_cell_activation_time[i] );
                     printf(
-                        "SOUND RECEIVED FOR LIGHT on sensor %d, reporting. Sound time: %ld, Light time: %ld \n",
-                        i, sound_time, light_cell_activation_time[i]);
+                        "SOUND RECEIVED FOR LIGHT on sensor %d, reporting. Sound time: %ld, Light time: %ld, DELAY: %lf \n",
+                        i, sound_time, light_cell_activation_time[i], time_delay);
                     report_sound_to_server(
-                        i, ((double)sound_time -
-                            (double)light_cell_activation_time[i]));
+                        i, time_delay);
                 }
             }
         }
