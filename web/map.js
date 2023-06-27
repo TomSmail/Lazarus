@@ -6,15 +6,15 @@ var lightningStrikes = new Map();
 // Lighning Icon
 var lightning = L.icon({
     iconUrl:
-     'https://cdn.pixabay.com/photo/2012/04/11/12/37/lightning-28003_1280.png',
+     './img/lightning.png',
     iconSize:     [23, 45], 
     iconAnchor:   [0, 45],
     popupAnchor:  [12, -36] 
 });
 
 var station = L.icon({
-    iconUrl: 'https://www.clipartmax.com/png/middle/169-1690558_radio-antenna-free-icon-satellite-dish-icon-png.png',
-    iconSize:     [50, 50], 
+    iconUrl: './img/basestation.png',
+    iconSize:     [64, 40], 
     iconAnchor:   [25, 25],
     popupAnchor:  [-3, -50] 
 });
@@ -75,9 +75,9 @@ function setStrikes(json, websocket) {
 
 
 function drawThreeStations(strike) {
-    drawBaseStation(strike.centre_lat_1, strike.centre_lon_1, strike.radius_1);
-    drawBaseStation(strike.centre_lat_2, strike.centre_lon_2, strike.radius_2);
-    drawBaseStation(strike.centre_lat_3, strike.centre_lon_3, strike.radius_3);
+    drawBaseStation(strike.centre_lat_1, strike.centre_lon_1);
+    drawBaseStation(strike.centre_lat_2, strike.centre_lon_2);
+    drawBaseStation(strike.centre_lat_3, strike.centre_lon_3);
 }
 
 // DO NOT call this function directly it should
@@ -88,26 +88,10 @@ function removeLightning (id) {
     map.removeLayer(marker);
 }
 
-function drawBaseStation(lat, lon, r) {
-    console.log(r);
-    console.log(lat);
-    console.log(lon);
+function drawBaseStation(lat, lon) {
     // Base Station
-    L.circle([lat,lon], {
-        color: 'black',
-        fillColor: 'black',
-        fillOpacity: 1,
-        radius: 25,
-    }).addTo(map);
-
-    // Distance from Base Radius
-    L.circle([lat, lon], {
-        color: "#3d3d3c",
-        fillOpacity: 0,
-        // fillColor: "#8a8987",
-        // fillOpacity: 0.5,
-        radius: r,
-    }).addTo(map);
+    marker = new L.marker([lat,lon],{icon: station});
+    map.addLayer(marker);
 }
 
 // Updates map when sent new data
@@ -129,6 +113,6 @@ function sendCancel(id, websocket) {
     websocket.send(JSON.stringify({id}));
 }
 
-// // Tests
-// drawLightning(49.55, -72.34, 10000, "23:00", "");
-// drawBaseStation(49.555, -72.345, 5000);
+// Tests
+drawLightning(51.508963, -0.166851, 10000, "23:00", "");
+drawBaseStation(51.499952, -0.177476);
