@@ -1,6 +1,7 @@
 #include "sensor_poll.h"
 
 #include <stdio.h>
+#include <stdbool.h>
 #include <time.h>
 #include <unistd.h>
 
@@ -16,12 +17,15 @@ int times_occur[] = {0, 0, 0};
 // Processes data from the raspberry pi and sends it through to the 
 //    server code that will alert the frontend.
 void report_sound_to_server(int sensor_idx, double delay) {
+    time_t time_at_report = time(0);
     times_occur[sensor_idx] = time(0);
     time_deltas[sensor_idx] = delay;
+    bool stations_all_received_signal_within_max
+      = time_at_report - times_occur[0] < MAX_DELTA_BETWEEN_STATIONS &&
+        time_at_report - times_occur[1] < MAX_DELTA_BETWEEN_STATIONS &&
+        time_at_report - times_occur[2] < MAX_DELTA_BETWEEN_STATIONS;
 
-    if (time(0) - times_occur[0] < MAX_DELTA_BETWEEN_STATIONS &&
-        time(0) - times_occur[1] < MAX_DELTA_BETWEEN_STATIONS &&
-        times_occur[2] < MAX_DELTA_BETWEEN_STATIONS) {
+    if (stations_all_received_signal_within_max) {
         // found a strike detected by all
         times_occur[0] = 0;
         times_occur[1] = 0;
