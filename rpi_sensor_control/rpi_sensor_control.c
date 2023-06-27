@@ -135,10 +135,8 @@ void* rpi_poll(void* args) {
                 if (sound_received(&sound_time, sound_pin)) {
                     // report to server.
                     printf(
-                        "SOUND RECEIVED FOR LIGHT on sensor %d, reporting.\n",
-                        i);
-                    printf("Sound time: %ld, Light time: %ld", sound_time,
-                           light_cell_activation_time[i]);
+                        "SOUND RECEIVED FOR LIGHT on sensor %d, reporting. Sound time: %ld, Light time: %ld \n",
+                        i, sound_time, light_cell_activation_time[i]);
                     report_sound_to_server(
                         i, ((double)sound_time -
                             (double)light_cell_activation_time[i]));

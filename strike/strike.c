@@ -81,6 +81,8 @@ void process_strike(StationRaw* station1, StationRaw* station2,
     strike_data.c3.centre = station3->station;
     strike_data.c3.radius = distance_to_lightning(station3->delay);
 
+    printf("Computed radii: 1: %lf, 2: %lf, 3: %lf", strike_data.c1.radius, strike_data.c2.radius, strike_data.c2.radius);
+
     // Compute intersection via tralaturation
     get_strike_location(&strike_data);
 

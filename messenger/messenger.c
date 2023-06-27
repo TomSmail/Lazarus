@@ -16,7 +16,7 @@ int send_text_message(char* message) {
 
     // Constructs command
     char instruction[MAX_BUFFER_SIZE];
-    strcpy(instruction, "./send_whatsapp.sh \"");
+    strcpy(instruction, "messenger/send_whatsapp.sh \"");
     strcat(instruction, MY_NUMBER);
     strcat(instruction, "\" \"");
     strcat(instruction, TWILIO_NUMBER);

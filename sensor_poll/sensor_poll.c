@@ -30,7 +30,6 @@ void report_sound_to_server(int sensor_idx, double delay) {
         StationRaw station1 = {
             .station = {.lat = lat_array[0], .lon = lon_array[0]},
             .delay = time_deltas[0]};
-
         StationRaw station2 = {
             .station = {.lat = lat_array[1], .lon = lon_array[1]},
             .delay = time_deltas[1]};
@@ -38,7 +37,7 @@ void report_sound_to_server(int sensor_idx, double delay) {
             .station = {.lat = lat_array[2], .lon = lon_array[2]},
             .delay = time_deltas[2]};
 
-        printf("Delay: %lf", delay);
+        printf("Reporting with time_deltas[0]: %lf, time_deltas[1]: %lf, time_deltas[2]: %lf\n", time_deltas[0], time_deltas[1], time_deltas[2]);
         process_strike(&station1, &station2, &station3,
                        time(0));  // get that sent off
     }
