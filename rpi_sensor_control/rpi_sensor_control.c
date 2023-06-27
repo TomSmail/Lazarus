@@ -20,8 +20,9 @@
 #define MAX_DIST_FROM_LIGHTNING 10000  // metres
 #define SAMPLE_DELAY 5                 // in milliseconds.
 #define MAX_SOUND_DELAY_AFTER_LIGHT \
-    MAX_DIST_FROM_LIGHTNING /       \
-        0.33  // for 5000 metres, expect max. 15,150 millisecond delay.
+  (MAX_DIST_FROM_LIGHTNING /						\
+   0.33) / 1000  // for 5000 metres, expect max. 15,150 millisecond delay.
+// Divide by 1000 since now in seconds.
 #define QTY_SENSOR_PAIRS 3
 #define LIGHT_FLASH_THRESHOLD 7000
 
@@ -124,7 +125,7 @@ void* rpi_poll(void* args) {
             // detected light)...
             bool within_max_delay_after_light_received =
                 time(0) <
-                light_cell_activation_time[i] + MAX_SOUND_DELAY_AFTER_LIGHT;
+	        light_cell_activation_time[i] + MAX_SOUND_DELAY_AFTER_LIGHT;
             // takes most recent lightning strike.
 
             if (within_max_delay_after_light_received) {  // max time not
