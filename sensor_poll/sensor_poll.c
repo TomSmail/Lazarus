@@ -37,6 +37,9 @@ void report_sound_to_server(int sensor_idx, double delay) {
             .station = {.lat = lat_array[2], .lon = lon_array[2]},
             .delay = time_deltas[2]};
 
+	// ERROR IS HERE. Calls process_strike without all 3 sensors having procced.
+	// Probably a separate error causing the seg fault though...
+	
         printf("Reporting with time_deltas[0]: %lf, time_deltas[1]: %lf, time_deltas[2]: %lf\n", time_deltas[0], time_deltas[1], time_deltas[2]);
         process_strike(&station1, &station2, &station3,
                        time(0));  // get that sent off
