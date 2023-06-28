@@ -42,6 +42,7 @@ void broadcast_by_name(char *msg_name) {
 // Handlers for use with wsServer
 
 void onopen(ws_cli_conn_t *client) {
+    puts("Received a client connection...");
     clients[num_clients] = client;
     num_clients++;
 
@@ -60,7 +61,7 @@ void onclose(ws_cli_conn_t *client) {
         }
     }
     num_clients--;
-    puts("Closed");
+    puts("Client closed the connection.");
 }
 
 void onmessage(ws_cli_conn_t *client, const unsigned char *msg, uint64_t size,
