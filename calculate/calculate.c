@@ -3,8 +3,13 @@
 #include <math.h>
 #include <stdio.h>
 
-#define lat_lon_to_dist(x) 111139.0 * x
-#define dist_to_lat_lon(x) x / 111139.0
+double lat_lon_to_dist(double x) {
+    return (111139.0 * x);
+}
+
+double dist_to_lat_lon(double x) {
+    return (x / 111139.0);
+}
 
 const double LIGHT_SPEED = 299792458;  // ms^-1
 const double SOUND_SPEED = 343;        // ms^-1
@@ -46,9 +51,10 @@ void get_strike_location(StrikeData *strike_data) {
     double xd =  (C*E - F*B) / (E*A - B*D); // (C * D - A * F) / (B * D - A * E); 
     double yd =  (C*D - A*F) / (B*D - A*E); // (C * E - F * B) / (E * A - B * D);
 
+    printf("%lf", (strike_data->c1).centre.lon);
     printf("%lf, %lf, %lf, %lf, %lf, %lf", x1, x2, x3, y1, y2, y3);
     printf("xd: %lf, yd: %lf", xd, yd);
 
-    (strike_data->strike_location).lat = dist_to_lat_lon(yd);
-    (strike_data->strike_location).lon = dist_to_lat_lon(xd);
+    (strike_data->strike_location).lat = ORIGIN_LAT + dist_to_lat_lon(yd);
+    (strike_data->strike_location).lon = ORIGIN_LON + dist_to_lat_lon(xd);
 }
