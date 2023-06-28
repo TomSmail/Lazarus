@@ -1,6 +1,7 @@
 #include "types.h"
 
 #include <math.h>
+#include <stdio.h>
 
 #define lat_lon_to_dist(x) 111139.0 * x
 #define dist_to_lat_lon(x) x / 111139.0
@@ -42,9 +43,12 @@ void get_strike_location(StrikeData *strike_data) {
     double E = -2 * y2 + 2 * y3;
     double F = r2 * r2 - r3 * r3 - x2 * x2 + x3 * x3 - y2 * y2 + y3 * y3;
 
-    double xd = (C * D - A * F) / (B * D - A * E); 
-    double yd = (C * E - F * B) / (E * A - B * D);
+    double xd =  (C*E - F*B) / (E*A - B*D); // (C * D - A * F) / (B * D - A * E); 
+    double yd =  (C*D - A*F) / (B*D - A*E); // (C * E - F * B) / (E * A - B * D);
 
-    (strike_data->strike_location).lat = ORIGIN_LAT + dist_to_lat_lon(yd);
-    (strike_data->strike_location).lon = ORIGIN_LON + dist_to_lat_lon(xd);
+    printf("%lf, %lf, %lf, %lf, %lf, %lf", x1, x2, x3, y1, y2, y3);
+    printf("xd: %lf, yd: %lf", xd, yd);
+
+    (strike_data->strike_location).lat = dist_to_lat_lon(yd);
+    (strike_data->strike_location).lon = dist_to_lat_lon(xd);
 }
