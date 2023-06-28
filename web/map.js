@@ -114,5 +114,5 @@ function sendCancel(id, websocket) {
 }
 
 // Tests
-drawLightning(51.508963, -0.166851, 10000, "23:00", "");
-drawBaseStation(51.499952, -0.177476);
+// drawLightning(51.508963, -0.166851, 10000, "23:00", "");
+// drawBaseStation(51.499952, -0.177476);
