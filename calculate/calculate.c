@@ -12,15 +12,6 @@ const double RADIUS_EARTH = 6378139;
 const double ORIGIN_LAT = 51.471557;
 const double ORIGIN_LON = -0.243153;
 
-// // Uses the algorithm detailled here:
-// // https://www.educative.io/answers/how-to-calculate-distance-using-the-haversine-formula
-// //   to find the distance between two points locations on earth
-// double haversine_formula(double lat_org, double lon_org, double lat_point, double lon_point) {
-//     double a = pow(sin((lat_org - lat_point) / 2 ), 2) + cos(lat_org) * cos(lat_point) * pow(sin((lon_org - lon_point) / 2 ), 2);
-//     double c = 2 * atan2(sqrt(a), sqrt(1-a));
-//     return (c * RADIUS_EARTH);
-// }
-
 // Uses the difference in speed between sound and light to find the distance
 // to a lightning strike from lightning and thunder data.
 double distance_to_lightning(double time_delta) {
