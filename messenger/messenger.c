@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
 
 // Sends message to phone number via whatsapp specified in local environment
 int send_text_message(char* message) {
@@ -13,6 +14,12 @@ int send_text_message(char* message) {
     const char* ACCOUNT_SID = getenv("ACCOUNT_SID");
     const char* AUTH_TOKEN = getenv("AUTH_TOKEN");
     const int MAX_BUFFER_SIZE = 1024;
+
+    // Check that the required variables were set
+    assert(TWILIO_NUMBER != NULL);
+    assert(MY_NUMBER != NULL);
+    assert(ACCOUNT_SID != NULL);
+    assert(AUTH_TOKEN != NULL);
 
     // Constructs command
     char instruction[MAX_BUFFER_SIZE];
