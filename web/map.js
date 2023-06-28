@@ -98,7 +98,7 @@ function drawBaseStation(lat, lon) {
 window.addEventListener("DOMContentLoaded", 
 () => {
     // Creates websocket
-    const websocket = new WebSocket("ws://192.168.34.222:5678");
+    const websocket = new WebSocket("ws://192.168.24.222:5678");
 
     // Recieving Data
     websocket.onmessage = (event) => {
